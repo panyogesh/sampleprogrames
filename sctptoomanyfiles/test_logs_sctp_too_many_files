@@ -1,0 +1,18 @@
+vagrant@magma-dev-focal:~$ grep "Max open files" /proc/$(pidof server)/limits
+Max open files            1024                 1048576              files
+vagrant@magma-dev-focal:~$
+
+vagrant@magma-dev-focal:~$ ulimit -Sn
+1024
+
+vagrant@magma-dev-focal:~/TMP$ grep "Max open files" /proc/$(pidof server)/limits
+Max open files            3000                 3000                 files
+vagrant@magma-dev-focal:~/TMP$
+
+ulimit -n 3000
+ 
+New client connected....= 2999
+ Length of Data received: 20
+ Data : HI !! This is client
+Awaiting a new connection
+accept() failed Too many open files
