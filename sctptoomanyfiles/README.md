@@ -10,4 +10,4 @@
         https://www.baeldung.com/linux/error-too-many-open-files
         http://simplestcodings.blogspot.com/2010/08/sctp-server-client-implementation-in-c.html
     - gcc sctp_client.c -o client -lsctp
-    - gcc sctp_server.c - o server - lsctp
+    - gcc sctp_server.c -o server -lsctp
