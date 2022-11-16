@@ -69,7 +69,22 @@ main ()
       close(listenSock);
       exit(1);
   }
+	
+  printf ("Awaiting a new connection\n");
 
+  connSock = accept (listenSock, (struct sockaddr *) NULL, (int *) NULL);
+  if (connSock == -1)
+    {
+      printf("accept() failed %s\n", strerror(errno));
+      perror("accept()");
+      //close(connSock);
+      exit(0);
+    }
+  else {
+    printf ("New client connected....= %d\n", connSock);
+     //system ("cat /proc/net/sctp/assocs");
+   }
+	
   while (1)
     {
 
@@ -80,7 +95,7 @@ main ()
       bzero (buffer, MAX_BUFFER + 1);
 
       printf ("Awaiting a new connection\n");
-
+#if 0 /* For continous Loop */
       connSock = accept (listenSock, (struct sockaddr *) NULL, (int *) NULL);
       if (connSock == -1)
       {
@@ -93,7 +108,7 @@ main ()
         printf ("New client connected....= %d\n", connSock);
 	//system ("cat /proc/net/sctp/assocs");
       }
-
+#endif /* Loop */
       in = sctp_recvmsg (connSock, buffer, sizeof (buffer),
     (struct sockaddr *) NULL, 0, &sndrcvinfo, &flags);
 
